@@ -8,6 +8,6 @@ export default defineConfig({
     proxy: { "/": "http://localhost:8000" }
   },
   build: {
-    outDir: "dist"
+    outDir: "../popcorn/static"
   }
 });

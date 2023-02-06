@@ -10,6 +10,6 @@ fn main() {
     launch_app();
 }
 
-fn launch_app() {
-    start_server();
+fn launch_app() -> String {
+    start_server().unwrap()
 }

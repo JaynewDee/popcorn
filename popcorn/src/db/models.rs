@@ -1,6 +1,6 @@
 use argon2::Config;
 use rand::Rng;
-use sqlx::{query, query_as, MySql, Pool};
+use sqlx::{MySql, Pool};
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct User {
@@ -72,7 +72,7 @@ impl Seeder {
             .await
             .unwrap();
 
-        sqlx::query(
+        let res = sqlx::query(
             "CREATE TABLE IF NOT EXISTS users (
             username varchar(50) not null,
             email varchar(50) not null,
@@ -82,6 +82,7 @@ impl Seeder {
         .execute(sql_conn)
         .await
         .unwrap();
+        println!("\n{:?}", res);
 
         let seeder = Self::new();
         let users = seeder.users;

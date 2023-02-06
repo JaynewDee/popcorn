@@ -1,6 +1,6 @@
 // use mysql::*;
+use serde;
 use sqlx::{MySql, MySqlPool, Pool};
-
 pub mod models;
 
 use models::Seeder;
@@ -13,8 +13,8 @@ pub async fn main() -> Pool<MySql> {
 
     let pool = MySqlPool::connect(url).await.unwrap();
 
-    // Seeder::new();
-    // Seeder::seed_all(&pool).await;
+    Seeder::new();
+    Seeder::seed_all(&pool).await;
 
     println!("Yay!");
 
