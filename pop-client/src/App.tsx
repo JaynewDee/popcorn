@@ -2,13 +2,21 @@ import { useState } from "react";
 import "./App.css";
 import Login from "./auth/Login";
 import Header from "./components/Header";
+import { UserContextProvider } from "./context/User";
+import { BrowserRouter, Route } from "react-router-dom";
+import Landing from "./components/Landing";
 
 const App = () => {
   return (
-    <div className="App">
-      <Header />
-      <Login />
-    </div>
+    <UserContextProvider>
+      <div className="App">
+        <Header />
+        <BrowserRouter>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+        </BrowserRouter>
+      </div>
+    </UserContextProvider>
   );
 };
 

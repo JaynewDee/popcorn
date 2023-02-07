@@ -6,8 +6,10 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rocket = {version = "0.5.0-rc.2"}
+rocket = {version = "0.5.0-rc.2", features = ["json"]}
 rocket_contrib = {version = "0.4.11-rc.2", features = ["serve", "json"]}
+rocket_cors = "0.5.2"
+async-trait = "*"
 sqlx = { version = "0.6", features = [ "runtime-tokio-native-tls" , "mysql" ] }
 tokio = { version = "1", features = ["full"] }
 serde_json = "1.0"
@@ -15,3 +17,7 @@ serde = { version = "1.0", features = ["derive"]}
 rust-argon2 = "1.0.0"
 rand = "*"
 dotenv = "*"
+
+
+[profile.release]
+debug = true

@@ -1,9 +1,9 @@
-export const API = {
-  login: async () =>
-    await fetch("http://localhost:8000/api/login", {
+export const Auth = {
+  login: async (email: String, pw: String) =>
+    await fetch("/api/login", {
       body: JSON.stringify({
-        email: "jdiehl2236@gmail.com",
-        pw: "supersecret"
+        email,
+        pw
       }),
       method: "POST",
       headers: {

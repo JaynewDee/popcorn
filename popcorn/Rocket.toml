@@ -1,1 +1,10 @@
 [development]
+
+[global.limits]
+max_request_body_size = 100_000_000
+
+[global.cors]
+allowed_origins = ["*"]
+allowed_methods = ["GET", "POST", "OPTIONS"]
+allow_credentials = false
+max_age = 3600

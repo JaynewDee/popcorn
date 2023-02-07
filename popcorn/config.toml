@@ -1,3 +1,0 @@
-[env]
-STATICS_PATH = "C:/Users/jdieh/Desktop/Rust/popcorn/pop-client/dist"
-DATABASE_URL = "mysql://root:root@localhost:3306/popcorn_dev"

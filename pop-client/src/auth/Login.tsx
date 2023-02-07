@@ -1,21 +1,43 @@
 import React, { useState } from "react";
-import { API } from "../api/auth";
+import { Auth } from "../api/auth";
 import "./styles.css";
+
 const Login = () => {
-  const [formState, setFormState] = useState({
-    username: "",
+  const [{ email, pw }, setFormState] = useState({
+    email: "",
     pw: ""
   });
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
-    const res = await API.login();
+    const res = await Auth.login(email, pw);
     console.log(res);
   };
+
+  const updateFormState = (e: any) => {
+    const { name, value } = e.target;
+    setFormState((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   return (
     <form className="login-form" onSubmit={handleLogin}>
-      <label></label>
-      <input type="text" placeholder="LOGIN"></input>
+      <input
+        name="email"
+        onChange={updateFormState}
+        value={email}
+        type="text"
+        placeholder="EMAIL"
+      />
+      <input
+        name="pw"
+        onChange={updateFormState}
+        value={pw}
+        type="password"
+        placeholder="PASSWORD"
+      />
       <button type="submit">LOGIN</button>
     </form>
   );
