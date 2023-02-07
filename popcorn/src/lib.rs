@@ -33,7 +33,6 @@ mod routes {
     use crate::models::UserAuth;
     use crate::routing::{DBConn, LoginInput, LoginSuccess};
 
-    
     #[get("/<_path..>")]
     pub async fn client_render(_path: PathBuf) -> Result<NamedFile, std::io::Error> {
         Ok(NamedFile::open(relative!("./static/index.html"))
@@ -76,9 +75,9 @@ mod routes {
     }
 }
 ///
-////////////////////
-/// Transfer Types
-////////////////////
+/////////////////////////
+/// HTTP Transfer Types
+/////////////////////////
 ///
 mod routing {
     use rocket::fairing::{Fairing, Info, Kind};
@@ -135,7 +134,7 @@ mod routing {
 
 ///
 //////////////////
-///
+/// DB Models
 //////////////////
 ///
 mod models {
@@ -174,8 +173,6 @@ mod models {
         }
 
         fn verify_password(encoded: &str, plain_text: String) -> bool {
-            println!("\nEncoded: {}\nPlain: {}\n", encoded, plain_text);
-
             argon2::verify_encoded(encoded, plain_text.as_bytes()).unwrap()
         }
 
@@ -184,22 +181,15 @@ mod models {
                 .bind(&email)
                 .fetch_one(sql_conn)
                 .await?;
-            println!("{:?}", &user);
             Ok(user)
         }
 
         pub async fn login_by_email(sql_conn: &Pool<MySql>, email: &str, pw: &str) -> AuthResponse {
-            println!("{:?}", Self);
             let user = Self::get_one(sql_conn, email).await;
             let data = user.unwrap();
 
             let username: String = data.get("username");
-            let email: String = data.get("email");
-            let pass: String = data.get("password");
-            println!(
-                "\nUsername: {}\nEmail: {}\nPassword: {}\n",
-                username, email, pass
-            );
+
             match Self::verify_password(data.get("password"), pw.to_string()) {
                 true => AuthResponse {
                     username,

@@ -1,7 +1,7 @@
 import React from "react";
 
 const Learn = () => {
-  return <div>Learn</div>;
+  return <div></div>;
 };
 
 export default Learn;

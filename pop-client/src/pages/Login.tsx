@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Auth } from "../api/auth";
 
 const Login = () => {
@@ -7,17 +8,18 @@ const Login = () => {
     pw: ""
   });
 
+  const location = useLocation();
   const handleLogin = async (e: any) => {
     e.preventDefault();
     try {
       const { cookie_id } = await Auth.login(email, pw);
-      cookie_id
-        ? sessionStorage.setItem("session_key", cookie_id)
-        : console.error("Authentication failed.");
+      if (cookie_id) {
+        sessionStorage.setItem("session_key", cookie_id);
+        console.log(location);
+      }
     } catch (err) {
       console.error(err);
     }
-    console.log("login handler end.");
   };
 
   const updateFormState = (e: any) => {

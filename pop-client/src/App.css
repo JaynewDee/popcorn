@@ -10,17 +10,18 @@
   position: relative;
 }
 
-.nav-container > nav {
+.nav-container {
   display: flex;
   flex-flow: column nowrap;
   margin-bottom: 2rem;
 }
 
-.nav-container > nav > .nav-link {
+.nav-container > .nav-link {
   color: white;
   text-decoration: none;
   font-size: 0.66rem;
   margin: 0rem auto;
+  line-height: 1.66;
 }
 .nav-container-collapsed {
   color: white;
@@ -28,7 +29,7 @@
 .nav-container-expanded {
   opacity: 1;
 }
-.nav-container > nav > .nav-link:hover {
+.nav-container > .nav-link:hover {
   color: rgba(233, 0, 0, 0.9);
 }
 
@@ -54,6 +55,8 @@ button {
 
 .app-title {
   font-size: 1.33rem;
+  text-decoration: overline underline;
+  filter: drop-shadow(-0.3rem -0.2rem 0.15rem black);
 }
 
 .header-rule {
