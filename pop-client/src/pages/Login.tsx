@@ -9,11 +9,15 @@ const Login = () => {
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
-    const res = await Auth.login(email, pw);
-    if (res.cookie_id) {
-      console.log(res.cookie_id);
+    try {
+      const { cookie_id } = await Auth.login(email, pw);
+      cookie_id
+        ? sessionStorage.setItem("session_key", cookie_id)
+        : console.error("Authentication failed.");
+    } catch (err) {
+      console.error(err);
     }
-    console.log(res);
+    console.log("login handler end.");
   };
 
   const updateFormState = (e: any) => {
