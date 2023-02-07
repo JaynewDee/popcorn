@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Auth } from "../api/auth";
-import "./styles.css";
 
 const Login = () => {
   const [{ email, pw }, setFormState] = useState({
@@ -11,6 +10,9 @@ const Login = () => {
   const handleLogin = async (e: any) => {
     e.preventDefault();
     const res = await Auth.login(email, pw);
+    if (res.cookie_id) {
+      console.log(res.cookie_id);
+    }
     console.log(res);
   };
 

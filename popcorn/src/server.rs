@@ -1,13 +1,11 @@
 use rocket::config::Config;
-use rocket::fs::relative;
-use rocket::fs::FileServer;
-use rocket::{post, routes, Ignite, Rocket, State};
+use rocket::{routes, Ignite, Rocket};
 
-use crate::db;
-mod lib;
-mod routes;
-use lib::{DBConn, LoginInput, CORS};
-use routes::login;
+use crate::{
+    db,
+    routes::{client_render, login},
+    routing::DBConn,
+};
 
 ///
 /// SERVER Handler
@@ -23,9 +21,9 @@ pub async fn main() -> Result<Rocket<Ignite>, rocket::Error> {
     };
 
     let rocky = rocket::custom(&config)
-        .attach(CORS)
+        // .attach(CORS)
         .mount("/api", routes![login])
-        .mount("/", FileServer::from(relative!("./static/")))
+        .mount("/", routes![client_render])
         .manage(DBConn {
             connection: sql_pool,
         })

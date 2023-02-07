@@ -9,5 +9,7 @@ export const Auth = {
       headers: {
         "Content-Type": "application/json"
       }
-    }).then((data) => data.json())
+    })
+      .then((data) => data.json())
+      .catch((err) => console.error(err))
 };

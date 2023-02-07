@@ -3,4 +3,37 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-family: monospace;
+}
+
+.nav-container > nav {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 3rem;
+}
+
+.nav-container > nav > .nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 0.66rem;
+  margin: 0rem auto;
+  height: 1rem;
+}
+.nav-container-collapsed {
+  color: white;
+}
+.nav-container-expanded {
+  opacity: 1;
+}
+.nav-container > nav > .nav-link:hover {
+  color: rgba(255, 0, 0, 0.7);
+}
+
+.login-form {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.app-title {
+  font-size: 1.33rem;
 }

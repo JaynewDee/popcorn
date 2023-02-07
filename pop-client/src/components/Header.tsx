@@ -1,12 +1,13 @@
 import React from "react";
-import Login from "../auth/Login";
+import Login from "../pages/Login";
+import { Navigation } from "./Nav";
 
 const Header = () => {
   return (
-    <div>
-      <h4>POPCORN</h4>
-      <nav></nav>
-    </div>
+    <header>
+      <h1 className="app-title">POPCORN</h1>
+      <Navigation />
+    </header>
   );
 };
 

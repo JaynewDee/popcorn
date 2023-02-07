@@ -1,14 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { viteSingleFile } from "vite-plugin-singlefile";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  server: {
-    proxy: { "/": "http://127.0.0.1:8000/" },
-    cors: true
-  },
+  plugins: [react(), viteSingleFile()],
   build: {
-    outDir: "../popcorn/static"
+    outDir: "../popcorn/static",
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
   }
 });
