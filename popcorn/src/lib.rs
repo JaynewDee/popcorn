@@ -86,6 +86,7 @@ mod routing {
     use rocket::{Request, Response};
     use serde::{Deserialize, Serialize};
     use sqlx::{MySql, Pool};
+
     #[derive(Serialize, Deserialize)]
     struct UserData {
         username: String,

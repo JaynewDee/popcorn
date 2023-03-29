@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useCallback } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useMemo
+} from "react";
 
 const UserContext = createContext({});
 
@@ -13,13 +19,26 @@ const useUserContext = () => {
 };
 
 const UserContextProvider = ({ children }: { children: any }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<{} | undefined>({});
 
   const signout = useCallback(() => {
     setUser({});
   }, []);
 
-  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+  const signin = useCallback((newUser: any) => {
+    if (!user) {
+      setUser(newUser);
+    } else {
+      return user;
+    }
+  }, []);
+
+  const value = {
+    user,
+    signout,
+    signin
+  };
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
 export { UserContextProvider, useUserContext };

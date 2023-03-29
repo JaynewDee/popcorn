@@ -3,16 +3,18 @@ import { useLocation } from "react-router-dom";
 import { Auth } from "../api/auth";
 
 const Login = () => {
-  const [{ email, pw }, setFormState] = useState({
+  const [{ username, email, pw }, setFormState] = useState({
+    username: "",
     email: "",
     pw: ""
   });
 
   const location = useLocation();
+
   const handleLogin = async (e: any) => {
     e.preventDefault();
     try {
-      const { cookie_id } = await Auth.login(email, pw);
+      const { cookie_id } = await Auth.login({ email, pw });
       if (cookie_id) {
         sessionStorage.setItem("session_key", cookie_id);
         console.log(location);

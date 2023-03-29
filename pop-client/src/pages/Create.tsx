@@ -19,6 +19,7 @@ const Create = () => {
 
   return (
     <div>
+      <form></form>
       {/* If logged in, use user context to render with current quizzes */}
       {/* If no data found, display 'go here to get started' */}
       {/* Button to open Create Quiz form */}
